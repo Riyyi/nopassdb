@@ -1,5 +1,5 @@
 # nopassdb
-nopassdb is a program hashes passwords for you without no database.
+nopassdb is a program that hashes passwords for you without a database.
 
 ## Requirements before executing
 
