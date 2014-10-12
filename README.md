@@ -10,7 +10,7 @@ nopassdb is a program hashes passwords for you without no database.
 - Get the script: `git clone git://github.com/Riyyi/nopassdb`
 - Change the text `[ENTER YOUR SALT HERE]` in main.cpp to your desired salt.
 - (Optional) change the default output password length in the `int length` variable
-- Compile the program: `g++ [PATH]/nopassdb/main.cpp -std=c++0x -lcrypt` 
+- Compile the program:<br /> `g++ [PATH]/nopassdb/src/main.cpp -std=c++0x -lcrypt` 
 
 ## How to use
 
