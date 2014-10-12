@@ -21,9 +21,10 @@ For example: `nopassdb 12` or `nopassdb 40`
 
 ## Extras
 
+#### Hashing method
+
 In case you want a less strong hashed password (for whatever reason) or less maximum password length,
-you can change the hashing algoritm.<br />
-You need to change this before compiling the program by changing the number in the salt variable `$6$[YOUR SALT]$`.
+you can change the hashing algoritm. You need to change this before compiling the program by changing the number in the salt variable `$6$[YOUR SALT]$`.
 
               ID  | Method
               ─────────────────────────────────────────────────────────
@@ -36,3 +37,8 @@ You need to change this before compiling the program by changing the number in t
               MD5     | maximum 22 characters
               SHA-256 | maximum 43 characters
               SHA-512 | maximum 86 characters
+
+#### Backups
+
+As backups are important regarding passwords, I have added a Bash + Python and a Bash + Perl script to the `/script` directory in case this program ever stops working.<br />
+I may convert the Bash + Python script to a complete Python program in the future for cross platform compatibilty.
