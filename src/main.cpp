@@ -1,40 +1,37 @@
 #include <unistd.h>
-#include <string.h>
 
 #include <iostream>
 #include <sstream>
+#include <cstring>
+#include <vector>
+
+#include "arghandle.h"
+
+// Default output length
+int length = 20;
+
+// Declare salt variable
+char salt[] = "$6$[ENTER YOUR SALT HERE]$";
 
 int main(int argc, char ** argv) {
-    // Default output length
-    int length = 20;
+    std::vector<std::string> arguments(argv, argv + argc);
 
-    // Declare salt variable
-    char salt[] = "$6$[ENTER YOUR SALT HERE]$";
+    for(std::string& s : arguments) {
+        //std::cout << s << std::endl;
 
-    // If there is an argument set
-    if (argc >= 2) {
-        std::stringstream buffer(argv[1]);
-        int x;
+        //std::vector<int> test = s;
+    }
 
-        // Check if argument is an integer
-        if(!(buffer >> x)) {
-            std::cout << "Given argument wasn't a number" << std::endl;
-            return 0;
-        } else {
-            if(std::to_string(x) != argv[1]) {
-                std::cout << "Given argument wasn't a number" << std::endl;
-                return 0;
-            }
-        }
-
-        length = x;
+    // Exit program when given any wrong arguments
+    if (!argHandle(argc, argv)) {
+        return 0;
     }
 
     // Get users password
     char *password;
     password = getpass("Password: ");
 
-    int start = strlen(salt);
+    int start = std::strlen(salt);
 
     // Hash, cut, output password
     std::string output = crypt(password, salt);

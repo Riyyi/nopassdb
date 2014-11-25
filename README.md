@@ -16,8 +16,8 @@ nopassdb is a program that hashes passwords for you without a database.
 
 - (Optional) add an alias to your `.bashrc` (in your home directory) to run it quicker: <br />`alias nopassdb='[FULL PATH]'` and then reloading your .bashrc once `. ~/.bashrc`
 - To run: `cd [PATH] && ./nopassdb` or simply: `nopassdb` if you setup an alias
-- The default returned password length is 20 characters if you want less/more characters run the program with a number behind it.
-For example: `nopassdb 12` or `nopassdb 40`
+- The default returned password length is 20 characters if you want less/more characters, run the program with the flag `-l` followed by a number.<br />
+For example: `nopassdb -l 12` or `nopassdb -l 40`
 
 ## Extras
 
