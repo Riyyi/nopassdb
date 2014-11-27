@@ -1,5 +1,6 @@
 # nopassdb
-nopassdb is a program that hashes passwords for you without a database.
+nopassdb is a program that hashes passwords for you without a database.<br />
+Because it doesn't use a database, in case you remember the `SALT` nothing can be lost, if your computer ever fails you can just setup this program again.
 
 ## Requirements before executing
 
@@ -18,6 +19,9 @@ nopassdb is a program that hashes passwords for you without a database.
 - To run: `cd [PATH] && ./nopassdb` or simply: `nopassdb` if you setup an alias
 - The default returned password length is 20 characters if you want less/more characters, run the program with the flag `-l` followed by a number.<br />
 For example: `nopassdb -l 12` or `nopassdb -l 40`
+- If you want to output the special characters `./` add the flag `-s` to the program call.
+
+The maximum password length this program can output is 80 characters (when you include the `-s` flag).
 
 ## Extras
 
