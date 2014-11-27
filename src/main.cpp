@@ -12,10 +12,6 @@ int main(int argc, char ** argv) {
         // Declare salt variable
         char salt[] = "$6$[ENTER YOUR SALT HERE]$";
 
-        // Arguments
-        int help;       // -h --help
-        int arglength;  // -l --length [number]
-
     // Construct GetOpt object by passing argc and argv arguments
     GetOpt::GetOpt_pp args(argc, argv);
 
@@ -23,8 +19,9 @@ int main(int argc, char ** argv) {
     args.exceptions(std::ios::failbit);
 
     // Process arguments
-    help = args >> GetOpt::OptionPresent('h', "help");
-    arglength = args >> GetOpt::OptionPresent('l', "length");
+    int help = args >> GetOpt::OptionPresent('h', "help");
+    int arglength = args >> GetOpt::OptionPresent('l', "length");
+    int outputspecialchar = args >> GetOpt::OptionPresent('s', "specialchar");
 
     if (arglength) {
         try {
@@ -43,38 +40,26 @@ int main(int argc, char ** argv) {
         return 0;
     }
 
+    ArgHelp arghelp;
+    Hash hash;
     // Go through options
     std::vector<std::string> argvector(argv, argv+argc);
 
     for (std::string arg : argvector) {
         if (help && (arg == "-h" || arg == "--help")) {
-            ArgHelp arghelp;
             arghelp.Main();
 
             return 0;
         }
 
         if (arglength  && (arg == "-l" || arg == "--length")) {
-            // Construct password hashing object
-            Hash hash;
-
-            // Get users password
-            char *password;
-            password = hash.GetPassword();
-
-            int start = std::strlen(salt);
-
-            // Hash password
-            std::string output;
-            output = hash.HashPassword(password, salt);
-
-            output = hash.OutputLength(output, start, length);
-            std::cout << output << std::endl;
+            hash.StartHashing(length, salt, outputspecialchar);
 
             return 0;
         }
     }
 
+    hash.StartHashing(length, salt, outputspecialchar);
 
     return 0;
 }
