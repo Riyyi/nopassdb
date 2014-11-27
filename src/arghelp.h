@@ -4,10 +4,9 @@
 #include <iostream>
 #include <sstream>
 
-// Variables
-extern int length;
-
-// Functions
-int argHandle(int argc, char **argv);
+class ArgHelp {
+public:
+    void Main();
+};
 
 #endif // ARGHANDLE_H
