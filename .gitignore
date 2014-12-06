@@ -30,6 +30,5 @@
 # Linux directory settings
 *.directory
 
-# Debug directories
-build-nopassdb-Desktop-Debug/*
-build-nopassdb-Desktop-Release/*
+# Build directory
+build/*

@@ -2,8 +2,9 @@
 #define HEADERS_H
 
 // Include all headers files for main.cpp
-#include "getoptpp/getopt_pp.h"
-#include "arghelp.h"
-#include "hash.h"
+#include "../lib/getoptpp/getopt_pp.h"
+
+// Internal namespace
+#include "nopassdb/nopassdb.h"
 
 #endif // HEADERS_H

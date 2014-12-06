@@ -1,8 +1,7 @@
-#include <iostream>
-#include <cstring>
-#include <vector>
+#include "main.h"
 
-#include "headers.h"
+#include <iostream>
+#include <vector>
 
 int main(int argc, char ** argv) {
     // VARIABLE DECLARATION
@@ -10,7 +9,7 @@ int main(int argc, char ** argv) {
         int length = 20; // -l --length [number]
 
         // Declare salt variable
-        char salt[] = "$6$[ENTER YOUR SALT HERE]$";
+        std::string salt = "$6$[ENTER YOUR SALT HERE]$";
 
     // Construct GetOpt object by passing argc and argv arguments
     GetOpt::GetOpt_pp args(argc, argv);
@@ -35,31 +34,30 @@ int main(int argc, char ** argv) {
     }
 
     if (args.options_remain()) {
-        std::cout << "nopassdb: '" << args.options_remain() << "' is not a nopassdb command. See 'nopassdb --help'." << std::endl;
+        std::cerr << "nopassdb: '" << args.options_remain() << "' is not a nopassdb command. See 'nopassdb --help'." << std::endl;
 
         return 0;
     }
 
-    ArgHelp arghelp;
-    Hash hash;
     // Go through options
     std::vector<std::string> argvector(argv, argv+argc);
 
     for (std::string arg : argvector) {
         if (help && (arg == "-h" || arg == "--help")) {
-            arghelp.Main();
+            NoPassDB::ArgHelp();
 
             return 0;
         }
 
         if (arglength  && (arg == "-l" || arg == "--length")) {
-            hash.StartHashing(length, salt, outputspecialchar);
+            std::string password = NoPassDB::GetPassword("Password: ");
+            NoPassDB::StartHashing(password, length, salt, outputspecialchar);
 
             return 0;
         }
     }
 
-    hash.StartHashing(length, salt, outputspecialchar);
-
+    std::string password = NoPassDB::GetPassword("Password: ");
+    NoPassDB::StartHashing(password, length, salt, outputspecialchar);
     return 0;
 }
