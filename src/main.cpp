@@ -9,7 +9,7 @@ int main(int argc, char ** argv) {
         int length = 20; // -l --length [number]
 
         // Declare salt variable
-        std::string salt = "$6$[ENTER YOUR SALT HERE]$";
+        std::string salt = "[ENTER YOUR SALT HERE]";
 
     // Construct GetOpt object by passing argc and argv arguments
     GetOpt::GetOpt_pp args(argc, argv);
@@ -20,7 +20,6 @@ int main(int argc, char ** argv) {
     // Process arguments
     int help = args >> GetOpt::OptionPresent('h', "help");
     int arglength = args >> GetOpt::OptionPresent('l', "length");
-    int outputspecialchar = args >> GetOpt::OptionPresent('s', "specialchar");
 
     if (arglength) {
         try {
@@ -51,13 +50,13 @@ int main(int argc, char ** argv) {
 
         if (arglength  && (arg == "-l" || arg == "--length")) {
             std::string password = NoPassDB::GetPassword("Password: ");
-            NoPassDB::StartHashing(password, length, salt, outputspecialchar);
+            NoPassDB::StartHashing(password, length, salt);
 
             return 0;
         }
     }
 
     std::string password = NoPassDB::GetPassword("Password: ");
-    NoPassDB::StartHashing(password, length, salt, outputspecialchar);
+    NoPassDB::StartHashing(password, length, salt);
     return 0;
 }

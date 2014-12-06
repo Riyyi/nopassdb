@@ -4,7 +4,7 @@ std::string NoPassDB::HashPassword(std::string password, std::string salt) {
     std::string output;
 
     // Hash password
-    output = sw::sha512::calculate(password);
+    output = sw::sha512::calculate(password + salt);
     sw::base64::encode(output, output);
 
     return output;
@@ -17,38 +17,20 @@ std::string NoPassDB::OutputLength(std::string password, int start, int length) 
     return password;
 }
 
-std::string NoPassDB::RemoveSpecialCharacters(std::string password) {
-    // Special characters to remove
-    std::string specialchararcters[] = {"/", "."};
-
-    // Removes them here
-    for (std::string sc : specialchararcters) {
-        int pos = 0;
-        while((pos = password.find(sc, pos)) != std::string::npos) {
-             password.replace(pos, 1, "");
-
-             if (!password.find("/", pos + 1)) {
-                 pos ++;
-             }
-        }
-    }
-
-    return password;
-}
-
-int NoPassDB::StartHashing(std::string password, int length, std::string salt, int outputspecialchar) {
+int NoPassDB::StartHashing(std::string password, int length, std::string salt) {
     int start = salt.length();
 
     // Hash password
     std::string output;
-    output = HashPassword(password, salt);
+    output = NoPassDB::HashPassword(password, salt);
 
-    if (!outputspecialchar) {
-        output = RemoveSpecialCharacters(output);
-    }
-
-    output = OutputLength(output, start, length);
+    output = NoPassDB::OutputLength(output, start, length);
+    #ifdef _WIN32
     std::cout << output;
+    #else
+    std::cout << output << std::endl;
+    #endif
+
 
 //    #include <Windows.h>
 //    // Copy password to clipboard (WindowsAPI)
