@@ -19,7 +19,7 @@ std::string GetLocation() {
 #elif defined(__unix) || defined (__APPLE__)
     systemenv = getenv("HOME");
     location.assign(systemenv);
-    location += "/.config/nopassdb";
+    location += "/.config/nopassdb/";
 #endif
 
     return location;
