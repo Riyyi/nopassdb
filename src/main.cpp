@@ -4,12 +4,17 @@
 #include <vector>
 
 int main(int argc, char ** argv) {
-    // VARIABLE DECLARATION
-        // Default output length
-        int length = 20; // -l --length [number]
+    // Variable declaration
+    int length;
+    std::string salt;
 
-        // Declare salt variable
-        std::string salt = "[ENTER YOUR SALT HERE]";
+    // Create config if none could be found
+    if (!NoPassDB::CheckConfig(length, salt)) {
+        salt = NoPassDB::GetPassword("Enter the Salt you want to use: ");
+        NoPassDB::CreateConfig(salt);
+
+        return 0;
+    }
 
     // Construct GetOpt object by passing argc and argv arguments
     GetOpt::GetOpt_pp args(argc, argv);

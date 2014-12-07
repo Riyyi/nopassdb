@@ -22,10 +22,9 @@ set(SRC_LIST
     src/main.cpp
     src/nopassdb/nopassdb.cpp
     src/nopassdb/arghelp.cpp
+    src/nopassdb/config.cpp
     src/nopassdb/hash.cpp
     src/nopassdb/password.cpp
-    src/nopassdb/nt/password.cpp
-    src/nopassdb/posix/password.cpp
 )
 
 # Seperate header files without a matching .cpp file

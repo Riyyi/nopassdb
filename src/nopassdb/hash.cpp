@@ -10,27 +10,25 @@ std::string NoPassDB::HashPassword(std::string password, std::string salt) {
     return output;
 }
 
-std::string NoPassDB::OutputLength(std::string password, int start, int length) {
+std::string NoPassDB::OutputLength(std::string password, int length) {
     // Return part of the hashing output
-    password = password.substr(start, length);
+    password = password.substr(0, length);
 
     return password;
 }
 
 int NoPassDB::StartHashing(std::string password, int length, std::string salt) {
-    int start = salt.length();
-
     // Hash password
     std::string output;
     output = NoPassDB::HashPassword(password, salt);
 
-    output = NoPassDB::OutputLength(output, start, length);
-    #ifdef _WIN32
+    // Trim to desired length
+    output = NoPassDB::OutputLength(output, length);
+#ifdef _WIN32
     std::cout << output;
-    #else
+#else
     std::cout << output << std::endl;
-    #endif
-
+#endif
 
 //    #include <Windows.h>
 //    // Copy password to clipboard (WindowsAPI)
