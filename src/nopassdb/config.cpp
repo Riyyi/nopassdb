@@ -16,10 +16,14 @@ std::string GetLocation() {
     systemenv = getenv("APPDATA");
     location.assign(systemenv);
     location += "\\nopassdb";
-#elif defined(__unix) || defined (__APPLE__)
+#elif defined(__unix) && !defined(__APPLE__)
     systemenv = getenv("HOME");
     location.assign(systemenv);
     location += "/.config/nopassdb/";
+#elif defined (__APPLE__)
+    systemenv = getenv("HOME");
+    location.assign(systemenv);
+    location += "/Documents/nopassdb/";
 #endif
 
     return location;
