@@ -32,3 +32,6 @@
 
 # Build directory
 build/*
+
+# Cmake generated configs
+CMakeLists.txt.user*
