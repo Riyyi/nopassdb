@@ -16,9 +16,21 @@ int NoPassDB::CopyToClipboard(std::string string) {
 
     return 0;
 }
-// Linux and Apple
-#elif defined(__unix) || defined (__APPLE__)
+// Linux
+#elif defined(__unix)
 int NoPassDB::CopyToClipboard(std::string string) {
+    // Command example: echo "password" | xsel -b -i
+    //                  echo "password" | xclip --clipboard --input
+    string = "echo \"" + string + "\" | xsel -i -b";
+    system(string.c_str());
+
     return 0;
 }
+// Apple
+#elif defined(__APPLE__)
+    // Command example: echo "password" | pbcopy
+    string = "echo \"" + string + "\" | pbcopy";
+    system(string.c_str());
+
+    return 0;
 #endif

@@ -1,2 +1,4 @@
 -DCMAKE_BUILD_TYPE=Debug
 max 172 characters long
+depends:
+	linux: xsel
