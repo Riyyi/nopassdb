@@ -22,6 +22,7 @@ set(SRC_LIST
     src/main.cpp
     src/nopassdb/nopassdb.cpp
     src/nopassdb/arghelp.cpp
+    src/nopassdb/clipboard.cpp
     src/nopassdb/config.cpp
     src/nopassdb/hash.cpp
     src/nopassdb/password.cpp

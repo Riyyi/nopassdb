@@ -29,7 +29,7 @@ std::string GetLocation() {
     return location;
 }
 
-int NoPassDB::CheckConfig(int & length, std::string & salt) {
+int NoPassDB::CheckConfig(int &length, std::string &salt) {
     std::string line;
     std::ifstream config;
 

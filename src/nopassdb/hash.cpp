@@ -17,29 +17,17 @@ std::string NoPassDB::OutputLength(std::string password, int length) {
     return password;
 }
 
-int NoPassDB::StartHashing(std::string password, int length, std::string salt) {
+int NoPassDB::StartHashing(std::string &password, int length, std::string salt) {
     // Hash password
-    std::string output;
-    output = NoPassDB::HashPassword(password, salt);
+    password = NoPassDB::HashPassword(password, salt);
 
     // Trim to desired length
-    output = NoPassDB::OutputLength(output, length);
+    password = NoPassDB::OutputLength(password, length);
 #ifdef _WIN32
-    std::cout << output;
+    std::cout << password;
 #else
-    std::cout << output << std::endl;
+    std::cout << password << std::endl;
 #endif
-
-//    #include <Windows.h>
-//    // Copy password to clipboard (WindowsAPI)
-//    int clipboardLength = std::strlen(output.c_str()) + 1;
-//    HGLOBAL glob = GlobalAlloc(GMEM_FIXED,clipboardLength);
-//    memcpy(glob,output.c_str(),clipboardLength);
-
-//    OpenClipboard(0);
-//    EmptyClipboard();
-//    SetClipboardData(CF_TEXT,glob);
-//    CloseClipboard();
 
     return 0;
 }

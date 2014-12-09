@@ -1,5 +1,6 @@
 #include "password.h"
 
+// Windows 32-bit and 64-bit
 #ifdef _WIN32
 std::string NoPassDB::GetPassword(std::string prompt) {
     const char BACKSPACE = 8;
@@ -32,6 +33,7 @@ std::string NoPassDB::GetPassword(std::string prompt) {
     std::cout << std::endl;
     return password;
 }
+// Linux and Apple
 #elif defined(__unix) || defined (__APPLE__)
 // Get input from terminal without displaying the input
 int Getch() {

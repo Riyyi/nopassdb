@@ -8,7 +8,7 @@
 #include <fstream>
 
 namespace NoPassDB {
-    int CheckConfig(int & length, std::string & salt);
+    int CheckConfig(int &length, std::string &salt);
     int CreateConfig(std::string salt);
 }
 

@@ -12,7 +12,7 @@
 namespace NoPassDB {
     std::string HashPassword(std::string password, std::string salt);
     std::string OutputLength(std::string password, int length);
-    int StartHashing(std::string password, int length, std::string salt);
+    int StartHashing(std::string &password, int length, std::string salt);
 }
 
 #include "../../lib/base64.hh"

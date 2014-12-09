@@ -56,6 +56,7 @@ int main(int argc, char ** argv) {
         if (arglength  && (arg == "-l" || arg == "--length")) {
             std::string password = NoPassDB::GetPassword("Password: ");
             NoPassDB::StartHashing(password, length, salt);
+            NoPassDB::CopyToClipboard(password);
 
             return 0;
         }
@@ -63,5 +64,6 @@ int main(int argc, char ** argv) {
 
     std::string password = NoPassDB::GetPassword("Password: ");
     NoPassDB::StartHashing(password, length, salt);
+    NoPassDB::CopyToClipboard(password);
     return 0;
 }
