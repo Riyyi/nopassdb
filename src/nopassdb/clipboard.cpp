@@ -28,9 +28,11 @@ int NoPassDB::CopyToClipboard(std::string string) {
 }
 // Apple
 #elif defined(__APPLE__)
+int NoPassDB::CopyToClipboard(std::string string) {
     // Command example: echo "password" | pbcopy
     string = "echo \"" + string + "\" | pbcopy";
     system(string.c_str());
 
     return 0;
+}
 #endif
