@@ -3,46 +3,35 @@ nopassdb is a program that hashes passwords for you without a database.<br />
 Because it doesn't use a database, in case you remember the `SALT` nothing can be lost, if your computer ever fails you can just setup this program again.
 
 ## Requirements before executing
-
-- Library installed: gcc, glibc
+### Linux:
+- Dependencies (1)<br />
+xsel (optional) – to copy passwords to clipboard
 
 ## How to get it
-
 - Get the script: `git clone git://github.com/Riyyi/nopassdb`
 - Change the text `[ENTER YOUR SALT HERE]` in main.cpp to your desired salt.
-- (Optional) change the default output password length in the `int length` variable
-- Compile the program:<br /> `g++ -o nopassdb -std=c++0x -lcrypt [PATH]/nopassdb/src/main.cpp` 
+- (Optional) change the default output password length in the `int length` variable.
+- `$ cd` in the `nopassdb` directory.
+- Compile the program:
+<pre>$ mkdir build
+$ cd build
+$ cmake .. && make</pre>
 
 ## How to use
-
 - (Optional) add an alias to your `.bashrc` (in your home directory) to run it quicker: <br />`alias nopassdb='[FULL PATH]'` and then reloading your .bashrc once `. ~/.bashrc`
-- To run: `cd [PATH] && ./nopassdb` or simply: `nopassdb` if you setup an alias
+- To run: `$ cd [PATH] && ./nopassdb` or simply: `nopassdb` if you setup an alias
 - The default returned password length is 20 characters if you want less/more characters, run the program with the flag `-l` followed by a number.<br />
-For example: `nopassdb -l 12` or `nopassdb -l 40`
-- If you want to output the special characters `./` add the flag `-s` to the program call.
+For example: `$ nopassdb -l 12` or `$ nopassdb -l 40`
 
-The maximum password length this program can output is 80 characters (when you include the `-s` flag).
+The maximum password length this program can output is 172 characters.
 
-## Extras
+## Configuration
+The configuration file can either be in the same directory as the application, or in the default system config location.
+The default output `length` should be on line 1, and the `SALT` should be on line 2.
 
-#### Hashing method
-
-In case you want a less strong hashed password (for whatever reason) or less maximum password length,
-you can change the hashing algoritm. You need to change this before compiling the program by changing the number in the salt variable `$6$[YOUR SALT]$`.
-
-              ID  | Method
-              ─────────────────────────────────────────────────────────
-              1   | MD5
-              2a  | Blowfish (not in mainline glibc; added in some
-                  | Linux distributions)
-              5   | SHA-256 (since glibc 2.7)
-              6   | SHA-512 (since glibc 2.7)
-              
-              MD5     | maximum 22 characters
-              SHA-256 | maximum 43 characters
-              SHA-512 | maximum 86 characters
-
-#### Backups
-
-As backups are important regarding passwords, I have added a Bash + Python and a Bash + Perl script to the `/script` directory in case this program ever stops working.<br />
-I may convert the Bash + Python script to a complete Python program in the future for cross platform compatibilty.
+- Windows<br />
+C:\Users\\[USER]\AppData\Roaming\nopassdb\config.txt
+- OS X<br />
+/Documents/nopassdb/nopassdb.conf
+- Linux<br />
+/home/[USER]/.config/nopassdb/nopassdb.conf
