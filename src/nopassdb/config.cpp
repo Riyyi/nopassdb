@@ -15,7 +15,7 @@ std::string GetLocation() {
 #ifdef _WIN32
     systemenv = getenv("APPDATA");
     location.assign(systemenv);
-    location += "\\nopassdb";
+    location += "\\nopassdb\\";
 #elif defined(__unix) && !defined(__APPLE__)
     systemenv = getenv("HOME");
     location.assign(systemenv);
